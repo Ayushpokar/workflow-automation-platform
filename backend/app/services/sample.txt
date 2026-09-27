@@ -1,0 +1,10 @@
+{
+  "name": "Test workflow",
+  "definition": {
+    "nodes": [
+      {"id": "trigger", "type": "manual_trigger", "config": {}},
+      {"id": "http1", "type": "http", "config": {"method": "GET", "url": "https://example.com"}}
+    ],
+    "edges": [["trigger", "http1"]]
+  }
+}
