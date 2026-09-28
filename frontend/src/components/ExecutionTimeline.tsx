@@ -23,17 +23,19 @@ export function ExecutionTimeline({ log }: ExecutionTimelineProps) {
         const status = classifyStep(entry.output);
         const meta = statusMeta(status);
         return (
-          <div
-            key={index}
-            className="flex items-center justify-between border rounded-md px-3 py-2 bg-white"
-          >
-            <span className="font-mono text-sm text-gray-700">{entry.node_id}</span>
-            <span
-              className={`text-xs font-medium px-2 py-1 rounded border ${colorClasses[meta.color]}`}
-            >
-              {meta.label}
-            </span>
-          </div>
+          <details key={index} className="border rounded-md bg-white">
+            <summary className="flex items-center justify-between px-3 py-2 cursor-pointer list-none">
+              <span className="font-mono text-sm text-gray-700">{entry.node_id}</span>
+              <span
+                className={`text-xs font-medium px-2 py-1 rounded border ${colorClasses[meta.color]}`}
+              >
+                {meta.label}
+              </span>
+            </summary>
+            <pre className="text-xs bg-gray-50 p-2 border-t overflow-x-auto max-h-64">
+              {entry.output === null ? "No output" : JSON.stringify(entry.output, null, 2)}
+            </pre>
+          </details>
         );
       })}
     </div>
