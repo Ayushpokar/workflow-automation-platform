@@ -24,3 +24,17 @@ export interface WorkflowCreatePayload {
   name: string;
   definition: WorkflowDefinition;
 }
+
+export interface Step {
+  id: string;
+  type: "http" | "condition";
+  // http fields
+  method: string;
+  url: string;
+  // condition fields
+  field: string;
+  operator: string;
+  value: string;      // text box gives a string, converted on submit
+  onTrue: string;     // id of the target step, "" means stop
+  onFalse: string;
+}
